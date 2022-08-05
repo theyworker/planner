@@ -4,10 +4,11 @@ import { Container, Typography } from "@mui/material";
 // import {AddEmployee} from './components/Home/AddEmployee'
 // import {EditEmployee} from './components/Home/EditEmployee'
 // import { DeleteEmployee } from "./components/Home/DeleteEmployee";
+import './App.css'
 
 function App() {
   return (
-    <Container className="App" sx={{ marginTop: "2em" }}>
+    <Container className="App"  >
       
       <Routes>
         <Route path="/" element={<Home />} />
