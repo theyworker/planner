@@ -30,11 +30,14 @@ const Today = () => {
       addNewValue();
     }
   };
+  const handleItemClick = (uuid) => {
+    dispatch(toggleItemAsDone(uuid))
+  }
 
   return (
-    <Box>
+    <Box sx={{paddingTop: '2em'}}>
       {" "}
-      <Typography variant="h2" component="div" gutterBottom textAlign="center" sx={{color: '#FFF', }}>
+      <Typography variant="h2" component="div" gutterBottom textAlign="center" sx={{color: '#FFF', }} fontFamily={"'Josefin Sans', sans-serif"}>
         Today
       </Typography>
       <Stack spacing={2}>
@@ -43,7 +46,7 @@ const Today = () => {
           .map((item, index) => (
             <Paper
               key={index}
-              onClick={() => dispatch(toggleItemAsDone(item.uuid))}
+              onClick={() => handleItemClick(item.uuid)}
               sx={{ color: item.done ? "red" : "black " , textDecoration:  item.done ? 'line-through' : '', background: '#000', color: '#FFF', fontSize : '1em'}}
               elevation={0}
 
