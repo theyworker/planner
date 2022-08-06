@@ -1,14 +1,14 @@
 import { Box, Stack } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem, toggleItemAsDone } from "../redux/today";
+import { addItem, toggleItemAsDone } from "../redux/list";
 import Item from "../subcomponents/Item";
 import TextInput from "../subcomponents/TextInput";
 import Title from "../subcomponents/Title";
 
 const Today = () => {
   const [inputValue, setInputValue] = useState("");
-  const list = useSelector((state) => state.today.data || []);
+  const list = useSelector((state) => state.list.data || []);
 
   const dispatch = useDispatch();
 
@@ -16,7 +16,7 @@ const Today = () => {
     if (inputValue && inputValue.length > 0) {
       let newVal = inputValue;
       setInputValue("");
-      dispatch(addItem(newVal));
+      dispatch(addItem({text: newVal, list : 'Personal'}));
     }
   };
 

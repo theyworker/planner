@@ -1,7 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import todaySlice from "./redux/today";
+import listSlice from "./redux/list";
+import listCategoriesSlice from "./redux/listCategories";
 export default configureStore({
   reducer: {
-    today: todaySlice,
+    listCategories: listCategoriesSlice,
+    list: listSlice,
   },
 });
