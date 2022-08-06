@@ -1,24 +1,18 @@
 import { Routes, Route, Link } from "react-router-dom";
-import Home from "./components/Home";
+import Personal from "./components/Personal";
 import { Container, Typography } from "@mui/material";
-// import {AddEmployee} from './components/Home/AddEmployee'
-// import {EditEmployee} from './components/Home/EditEmployee'
-// import { DeleteEmployee } from "./components/Home/DeleteEmployee";
-import './App.css'
+import "./App.css";
+import Home from "./components/Home";
 
 function App() {
   return (
-    <Container className="App"  >
-      
+    <Container className="App">
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/add" element={<AddEmployee/>} />
-        <Route path="/edit/:id" element={<EditEmployee />} />
-        <Route path="/delete/:id" element={<DeleteEmployee />} /> */}
+        <Route path="/personal" element={<Personal />} />
       </Routes>
     </Container>
-  
   );
 }
 
-export default App;
+export default App
