@@ -1,15 +1,23 @@
-const express = require('express');
-const bodyParser= require('body-parser');
-const { getSampleResponse } = require('./db');
+const express = require("express");
+const bodyParser = require("body-parser");
+const { getSampleResponse } = require("./db");
+const { node_port } = require("./config");
+const { getCalendarData } = require("./calendar.repo");
 const app = express();
 
-app.get('/calendar/day', async function (req, res) {
-    let response = await getSampleResponse()
+app.get("/calendar/day", async function (req, res) {
+  let response = await getSampleResponse();
 
-    console.log('$$$$$$',response);
-    res.send(response)
-  })
+  console.log("$$$$$$", response);
+  res.send(response);
+});
+app.get("/calendar/week", async function (req, res) {
+  let response = await getCalendarData();
 
-app.listen(3300, function() {
-    console.log('listening on 3300')
-  })
+  console.log(">>", response);
+  res.send(response);
+});
+
+app.listen(node_port, function () {
+  console.log("listening on port: ", node_port);
+});

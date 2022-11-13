@@ -15,3 +15,10 @@ exports.getSampleResponse = async () =>
     return quotesCollection.find({}).toArray();
     // ...
   });
+
+  exports.queryDB = (callBack) =>  MongoClient.connect("mongodb://localhost:27017").then((client) => {
+    const db = client.db("sample");
+    const quotesCollection = db.collection("sample-col");
+    callBack(quotesCollection)
+
+  })
