@@ -28,7 +28,7 @@ const Home = () => {
           />
         </Grid>
         <Grid item xs={6} md={6}>
-          <Paper>XXX</Paper>
+          {/* <Paper>XXX</Paper> */}
         </Grid>
       </Grid>
       <NewListDialog open={openNewListDialog} setOpen={setOpenNewListDialog} />

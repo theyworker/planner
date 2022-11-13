@@ -4,6 +4,7 @@ import { Container, Typography } from "@mui/material";
 import "./App.css";
 import Home from "./components/Home";
 import List from "./components/List";
+import { Calendar } from "./components/Calendar";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/personal" element={<Personal />} />
         <Route path="/list/:list" element={<List/>} />
+        <Route path="/calendar" element={<Calendar/>} />
         
       </Routes>
     </Container>
