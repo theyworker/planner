@@ -6,9 +6,9 @@ const getyear = async (req, res) => {
   if (year && user) {
     let yearInt = parseInt(year);
     let result = await readYear(yearInt, user);
-    res.send({ sucess: true, ...result });
+    res.send({ ...result });
   } else {
-    res.send({ sucess: false });
+    res.send({ success: false });
   }
 };
 
@@ -17,9 +17,9 @@ const postyear = async (req, res) => {
   if (year && user && content) {
     let yearObject = { year, user, content };
     let result = await addYear(yearObject);
-    res.send({ sucess: true, ...result });
+    res.send({ ...result });
   } else {
-    res.send({ sucess: false });
+    res.send({ success: false });
   }
 };
 
@@ -28,9 +28,9 @@ const putyear = async (req, res) => {
   if ((year, user, content)) {
     let yearObject = { year, user, content };
     let result = await updateYear(yearObject);
-    res.send({ sucess: true, ...result });
+    res.send({ ...result });
   } else {
-    res.send({ sucess: false });
+    res.send({ success: false });
   }
 };
 

@@ -7,14 +7,14 @@ const {
 
 const getLists = async (req, res) => {
   let result = await readLists();
-  res.send({ sucess: true, ...result });
+  res.send({ ...result });
 };
 
 const getList = async (req, res) => {
   let { listId } = req.query;
   if (listId) {
     let result = await readList(listId);
-    res.send({ sucess: true, ...result });
+    res.send({  ...result });
   } else {
     res.send({ sucess: false });
   }
@@ -25,7 +25,7 @@ const postList = async (req, res) => {
   if (listId && user && name) {
     let listObject = { listId, user, name, items };
     let result = await addList(listObject);
-    res.send({ sucess: true, ...result });
+    res.send({ ...result });
   } else {
     res.send({ sucess: false });
   }
@@ -36,7 +36,7 @@ const putList = async (req, res) => {
   if (listId && user && name && createdAt) {
     let listObject = { listId, user, name, items, createdAt, updatedAt };
     let result = await updateList(listObject);
-    res.send({ sucess: true, ...result });
+    res.send({ ...result });
   } else {
     res.send({ sucess: false });
   }

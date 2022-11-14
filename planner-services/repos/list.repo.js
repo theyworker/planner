@@ -1,4 +1,5 @@
 const { executeDB } = require("../db");
+const { sendResponse } = require("./utils/repo");
 
 const getListCollection = (client) => {
   const db = client.db("planner");
@@ -6,25 +7,26 @@ const getListCollection = (client) => {
   return listCollection;
 };
 
+
 exports.readLists = async () => {
   let result = await executeDB((client) =>
     getListCollection(client).find({}).toArray()
   );
-  return { ...result };
+  return sendResponse(result);
 };
 
 exports.readList = async (listId) => {
   let result = await executeDB((client) =>
     getListCollection(client).findOne({ listId: listId })
   );
-  return { ...result };
+  return sendResponse(result);
 };
 
 exports.addList = async (listData) => {
   let result = await executeDB((client) =>
     getListCollection(client).insertOne({ ...listData, createdAt: new Date() })
   );
-  return { ...result };
+  return sendResponse(result);
 };
 
 exports.updateList = async (listData) => {
@@ -34,5 +36,5 @@ exports.updateList = async (listData) => {
       { $set: { items: listData.items, updatedAt: new Date() } }
     )
   );
-  return { ...result };
+  return sendResponse(result);
 };

@@ -1,4 +1,5 @@
 const { executeDB } = require("../db");
+const { sendResponse } = require("./utils/repo");
 
 const getDayCollection = (client) => {
   const db = client.db("planner");
@@ -10,7 +11,7 @@ exports.readDay = async (day, month, year, user) => {
   let result = await executeDB((client) =>
     getDayCollection(client).findOne({ day, month, year, user })
   );
-  return { ...result };
+  return sendResponse(result);
 };
 
 exports.addDay = async (dayData) => {
@@ -32,7 +33,7 @@ exports.addDay = async (dayData) => {
         createdAt: new Date(),
       });
     });
-    return { ...result };
+    return sendResponse(result);
   }
 };
 
@@ -48,5 +49,5 @@ exports.updateDay = async (dayData) => {
       { $set: { content: dayData.content, updatedAt: new Date() } }
     )
   );
-  return { ...result };
+  return sendResponse(result);
 };

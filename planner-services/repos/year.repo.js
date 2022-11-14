@@ -1,4 +1,5 @@
 const { executeDB } = require("../db");
+const { sendResponse } = require("./utils/repo");
 
 const getYearCollection = (client) => {
   const db = client.db("planner");
@@ -10,7 +11,7 @@ exports.readYear = async (year, user) => {
   let result = await executeDB((client) =>
     getYearCollection(client).findOne({ year, user })
   );
-  return { ...result };
+  return sendResponse(result);
 };
 
 exports.addYear = async (yearData) => {
@@ -30,7 +31,7 @@ exports.addYear = async (yearData) => {
         createdAt: new Date(),
       });
     });
-    return { ...result };
+    return sendResponse(result);
   }
 };
 
@@ -41,5 +42,5 @@ exports.updateYear = async (yearData) => {
       { $set: { content: yearData.content, updatedAt: new Date() } }
     )
   );
-  return { ...result };
+  return sendResponse(result);
 };

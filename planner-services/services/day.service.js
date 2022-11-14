@@ -10,9 +10,9 @@ const getday = async (req, res) => {
       parseInt(year),
     ];
     let result = await readDay(dayInt, monthInt, yearInt, user);
-    res.send({ sucess: true, ...result });
+    res.send({ ...result });
   } else {
-    res.send({ sucess: false });
+    res.send({ success: false });
   }
 };
 
@@ -21,9 +21,9 @@ const postday = async (req, res) => {
   if (day && month && year && user && content) {
     let dayObject = { day, month, year, user, content };
     let result = await addDay(dayObject);
-    res.send({ sucess: true, ...result });
+    res.send({ ...result });
   } else {
-    res.send({ sucess: false });
+    res.send({ success: false });
   }
 };
 
@@ -32,9 +32,9 @@ const putday = async (req, res) => {
   if (day && month && year && user && content) {
     let dayObject = { day, month, year, user, content };
     let result = await updateDay(dayObject);
-    res.send({ sucess: true, ...result });
+    res.send({ ...result });
   } else {
-    res.send({ sucess: false });
+    res.send({ success: false });
   }
 };
 
