@@ -35,7 +35,6 @@ const putyear = async (req, res) => {
 };
 
 module.exports = {
-  //  getyears,
   getyear,
   postyear,
   putyear,

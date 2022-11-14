@@ -1,5 +1,6 @@
 const express = require("express");
 const { node_port } = require("./config");
+const { getday, postday } = require("./services/day.service");
 const {
   getLists,
   getList,
@@ -17,9 +18,15 @@ app.get("/list", getList);
 app.post("/list", postList);
 app.put("/list", putList);
 
+// -- Year Endpoints --
 app.get("/year", getyear);
 app.post("/year", postyear);
 app.put("/year", putyear);
+
+// -- Day Endpoints --
+app.get("/day", getday);
+app.post("/day", postday);
+app.put("/day", putyear);
 
 app.listen(node_port, function () {
   console.log("listening on port: ", node_port);
