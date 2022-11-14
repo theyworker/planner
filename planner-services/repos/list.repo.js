@@ -22,7 +22,7 @@ exports.readList = async (listId) => {
 
 exports.addList = async (listData) => {
   let result = await executeDB((client) =>
-    getListCollection(client).insert({ ...listData, createdAt: new Date() })
+    getListCollection(client).insertOne({ ...listData, createdAt: new Date() })
   );
   return { ...result };
 };

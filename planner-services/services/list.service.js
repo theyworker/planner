@@ -1,4 +1,9 @@
-const { readLists, readList, addList, updateList } = require("../repos/list.repo");
+const {
+  readLists,
+  readList,
+  addList,
+  updateList,
+} = require("../repos/list.repo");
 
 const getLists = async (req, res) => {
   let result = await readLists();
@@ -16,9 +21,9 @@ const getList = async (req, res) => {
 };
 
 const postList = async (req, res) => {
-  let { listId, user, name, items, createdAt, updatedAt } = req.body;
-  if (listId && user && name && createdAt ) {
-    let listObject = {listId, user, name, items, createdAt, updatedAt}
+  let { listId, user, name, items } = req.body;
+  if (listId && user && name) {
+    let listObject = { listId, user, name, items };
     let result = await addList(listObject);
     res.send({ sucess: true, ...result });
   } else {
@@ -28,8 +33,8 @@ const postList = async (req, res) => {
 
 const putList = async (req, res) => {
   let { listId, user, name, items, createdAt, updatedAt } = req.body;
-  if (listId && user && name && createdAt ) {
-    let listObject = {listId, user, name, items, createdAt, updatedAt}
+  if (listId && user && name && createdAt) {
+    let listObject = { listId, user, name, items, createdAt, updatedAt };
     let result = await updateList(listObject);
     res.send({ sucess: true, ...result });
   } else {
@@ -37,4 +42,4 @@ const putList = async (req, res) => {
   }
 };
 
-module.exports = { getLists, getList,postList,putList };
+module.exports = { getLists, getList, postList, putList };
