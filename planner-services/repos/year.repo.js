@@ -14,30 +14,32 @@ exports.readYear = async (year, user) => {
 };
 
 exports.addYear = async (yearData) => {
-  let result = await executeDB((client) => {
-    // let isExist = getYearCollection(client).findOne({
-    //   year: yearData.year,
-    //   user: yearData.user,
-    // });
-    // if(isExist){
-    //   return { message: 'Already Exists'}
-    // }
-    // else{}
-
-    return getYearCollection(client).insertOne({
-      ...yearData,
-      createdAt: new Date(),
+  let isExist = await executeDB((client) => {
+    return getYearCollection(client).findOne({
+      year: yearData.year,
+      user: yearData.user,
     });
   });
-  return { ...result };
+
+  if (isExist) {
+    return { message: "Already Exists." };
+  } else {
+    let result = await executeDB((client) => {
+      return getYearCollection(client).insertOne({
+        ...yearData,
+        createdAt: new Date(),
+      });
+    });
+    return { ...result };
+  }
 };
 
-// exports.updateList = async (listData) => {
-//   let result = await executeDB((client) =>
-//     getYearCollection(client).updateOne(
-//       { listId: listData.listId },
-//       { $set: { items: listData.items, updatedAt: new Date() } }
-//     )
-//   );
-//   return { ...result };
-// };
+exports.updateYear = async (yearData) => {
+  let result = await executeDB((client) =>
+    getYearCollection(client).updateOne(
+      { year: yearData.year, user: yearData.user },
+      { $set: { content: yearData.content, updatedAt: new Date() } }
+    )
+  );
+  return { ...result };
+};

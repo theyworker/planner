@@ -6,7 +6,7 @@ const {
   postList,
   putList,
 } = require("./services/list.service");
-const { getyear, postyear } = require("./services/year.service");
+const { getyear, postyear, putyear } = require("./services/year.service");
 const app = express();
 
 app.use(express.json());
@@ -19,6 +19,7 @@ app.put("/list", putList);
 
 app.get("/year", getyear);
 app.post("/year", postyear);
+app.put("/year", putyear);
 
 app.listen(node_port, function () {
   console.log("listening on port: ", node_port);
