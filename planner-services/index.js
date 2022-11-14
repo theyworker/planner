@@ -1,25 +1,14 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-const { getSampleResponse } = require("./db");
 const { node_port } = require("./config");
-// const { getCalendarData } = require("./calendar.repo");
-const { getLists, getList, postList, putList } = require("./services/list.service");
+const {
+  getLists,
+  getList,
+  postList,
+  putList,
+} = require("./services/list.service");
 const app = express();
-app.use(express.json())
-
-// app.get("/calendar/day", async function (req, res) {
-//   let response = await getSampleResponse();
-
-//   console.log("$$$$$$", response);
-//   res.send(response);
-// });
-// app.get("/calendar/week", async function (req, res) {
-//   let response = await getCalendarData();
-
-//   console.log(">>", response);
-//   res.send(response);
-// });
-
+app.use(express.json());
+// -- List Endpoints --
 app.get("/lists", getLists);
 app.get("/list", getList);
 app.post("/list", postList);
