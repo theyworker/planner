@@ -6,8 +6,13 @@ const getLists = async (req, res) => {
 };
 
 const getList = async (req, res) => {
-  let result = await readList("213");
-  res.send({ sucess: true, ...result });
+  let { listId } = req.query;
+  if (listId) {
+    let result = await readList(listId);
+    res.send({ sucess: true, ...result });
+  } else {
+    res.send({ sucess: false });
+  }
 };
 
 module.exports = { getLists, getList };

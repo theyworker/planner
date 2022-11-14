@@ -10,7 +10,6 @@ exports.readLists = async () => {
   let result = await executeDB((client) =>
     getListCollection(client).find({}).toArray()
   );
-
   return { ...result };
 };
 
@@ -18,6 +17,5 @@ exports.readList = async (listId) => {
   let result = await executeDB((client) =>
     getListCollection(client).findOne({ "listId": listId })
   );
-
   return { ...result };
 };
