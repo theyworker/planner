@@ -3,8 +3,9 @@ const bodyParser = require("body-parser");
 const { getSampleResponse } = require("./db");
 const { node_port } = require("./config");
 // const { getCalendarData } = require("./calendar.repo");
-const { getLists, getList } = require("./services/list.service");
+const { getLists, getList, postList, putList } = require("./services/list.service");
 const app = express();
+app.use(express.json())
 
 // app.get("/calendar/day", async function (req, res) {
 //   let response = await getSampleResponse();
@@ -21,6 +22,8 @@ const app = express();
 
 app.get("/lists", getLists);
 app.get("/list", getList);
+app.post("/list", postList);
+app.put("/list", putList);
 
 app.listen(node_port, function () {
   console.log("listening on port: ", node_port);

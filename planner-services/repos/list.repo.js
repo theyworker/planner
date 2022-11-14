@@ -15,7 +15,24 @@ exports.readLists = async () => {
 
 exports.readList = async (listId) => {
   let result = await executeDB((client) =>
-    getListCollection(client).findOne({ "listId": listId })
+    getListCollection(client).findOne({ listId: listId })
+  );
+  return { ...result };
+};
+
+exports.addList = async (listData) => {
+  let result = await executeDB((client) =>
+    getListCollection(client).insert({ ...listData, createdAt: new Date() })
+  );
+  return { ...result };
+};
+
+exports.updateList = async (listData) => {
+  let result = await executeDB((client) =>
+    getListCollection(client).updateOne(
+      { listId: listData.listId },
+      { $set: { items: listData.items, updatedAt: new Date() } }
+    )
   );
   return { ...result };
 };
