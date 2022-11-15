@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require('cors')
 const { node_port } = require("./config");
 const { getday, postday } = require("./services/day.service");
 const {
@@ -9,6 +10,7 @@ const {
 } = require("./services/list.service");
 const { getyear, postyear, putyear } = require("./services/year.service");
 const app = express();
+app.use (cors())
 
 app.use(express.json());
 

@@ -1,7 +1,7 @@
 
 exports.sendResponse = (result) => {
     if (result) {
-      return { ...result, success: true };
+      return { data: result, success: true };
     } else {
       return { success: false };
     }

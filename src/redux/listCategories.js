@@ -12,6 +12,9 @@ export const listCategoriesSlice = createSlice({
     categories: [],
   },
   reducers: {
+    addAllCategories: (state, action) => {
+      state.categories = action.payload;
+    },
     addCategory: (state, action) => {
       state.categories = [...state.categories, listCategoryItem(action.payload)];
     },
@@ -19,6 +22,6 @@ export const listCategoriesSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { addCategory } = listCategoriesSlice.actions;
+export const { addAllCategories,addCategory } = listCategoriesSlice.actions;
 
 export default listCategoriesSlice.reducer;
