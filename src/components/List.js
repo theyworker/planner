@@ -54,6 +54,19 @@ const List = () => {
             ></Item>
           ))}
       </Stack>
+      <Stack spacing={2}>
+        {listObject.items
+          .filter((item) => !item.active)
+          .map((item, index) => (
+            <Item
+            key={`${item.name}${index}`}
+              item={item}
+              index={index}
+              uuid="itemId"
+              handleItemClick={handleItemClick}
+            ></Item>
+          ))}
+      </Stack>
       <Box sx={{ position: "fixed", bottom: "0px", width: "100%" }}>
         <Box SX={{ width: "80%" }}>
           <TextInput

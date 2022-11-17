@@ -5,9 +5,10 @@ import { LIST } from "../api/const";
 
 const createList = (newListName) => ({
   listId: uuidv4(),
-  user: "Deshmon",
+  user: "Deshan",
   name: newListName,
   items: [],
+  active: true
 });
 const createNewListItem = (listItemName) => ({
   text: listItemName,

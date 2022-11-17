@@ -23,7 +23,7 @@ const getList = async (req, res) => {
 const postList = async (req, res) => {
   let { listId, user, name, items } = req.body;
   if (listId && user && name) {
-    let listObject = { listId, user, name, items };
+    let listObject = { listId, user, name, items, active: true };
     let result = await addList(listObject);
     res.send({ ...result });
   } else {

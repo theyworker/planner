@@ -36,11 +36,11 @@ const Home = () => {
         <Grid item xs={6} md={6}>
           <SubTitle text="Lists" />
           {/* <Item item={{ text: "Personal" }} /> */}
-          {listData.map((category, index) => (
+          {listData.map((list, index) => (
             <Item
               key={index}
-              item={{ text: category.name }}
-              handleItemClick={() => handleItemClick(category.name)}
+              item={{ text: list.name, ...list }}
+              handleItemClick={() => handleItemClick(list.name)}
             />
           ))}
           <AddCircleOutlineIcon
