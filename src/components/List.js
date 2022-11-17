@@ -2,7 +2,7 @@ import { Box, Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { updateList } from "../redux/list";
+import { updateList,toogleItem } from "../redux/list";
 import Item from "../subcomponents/Item";
 import TextInput from "../subcomponents/TextInput";
 import Title from "../subcomponents/Title";
@@ -32,8 +32,8 @@ const List = () => {
       addNewValue();
     }
   };
-  const handleItemClick = (uuid) => {
-    // dispatch(toggleItemAsDone(uuid));
+  const handleItemClick = (itemId) => {
+    dispatch(toogleItem({listId : listObject.listId , itemId : itemId}));
   };
 
   const handleInput = (event) => setInputValue(event.target.value);
@@ -49,6 +49,7 @@ const List = () => {
             key={`${item.name}${index}`}
               item={item}
               index={index}
+              uuid="itemId"
               handleItemClick={handleItemClick}
             ></Item>
           ))}

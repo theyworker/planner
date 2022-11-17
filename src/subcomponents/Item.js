@@ -2,10 +2,10 @@ import { Paper } from "@mui/material";
 import React from "react";
 
 
-const Item = ({item, index , handleItemClick}) => (
+const Item = ({item, index , handleItemClick, uuid}) => (
   <Paper
     key={index}
-    onClick={() => handleItemClick(item.uuid)}
+    onClick={() => handleItemClick(item[uuid])}
     sx={{
       color: item.done ? "red" : "black ",
       textDecoration: item.done ? "line-through" : "",

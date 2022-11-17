@@ -18,7 +18,18 @@ const updateListArray = (listData = [], listId, newItem) => {
   let tempState = listData;
   let index = tempState.findIndex((list) => list.listId == listId);
   tempState[index].items = [...tempState[index].items, newItem];
-  return {tempState , items :tempState[index].items };
+  return { tempState, items: tempState[index].items };
+};
+
+const toggleListItem = (listData = [], listId, itemId) => {
+  let tempState = listData;
+  let index = tempState.findIndex((list) => list.listId == listId);
+  let itemIndex = tempState[index].items.findIndex(
+    (item) => item.itemId == itemId
+  );
+  tempState[index].items[itemIndex].active =
+    !tempState[index].items[itemIndex].active;
+  return { tempState, items: tempState[index].items };
 };
 
 export const listSlice = createSlice({
@@ -37,10 +48,24 @@ export const listSlice = createSlice({
     },
     updateList: (state, action) => {
       let listItemObject = createNewListItem(action.payload.newItem);
-      let {tempState , items} = updateListArray(
+      let { tempState, items } = updateListArray(
         state.listData,
         action.payload.listId,
         listItemObject
+      );
+      putReq(LIST, {
+        listId: action.payload.listId,
+        active: true,
+        user: "Devil",
+        items: items,
+      });
+      state.listData = [...tempState];
+    },
+    toogleItem: (state, action) => {
+      let { tempState, items } = toggleListItem(
+        state.listData,
+        action.payload.listId,
+        action.payload.itemId
       );
       putReq(LIST, {
         listId: action.payload.listId,
@@ -54,6 +79,6 @@ export const listSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { addAllLists, addList, updateList } = listSlice.actions;
+export const { addAllLists, addList, updateList , toogleItem} = listSlice.actions;
 
 export default listSlice.reducer;
