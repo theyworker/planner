@@ -7,22 +7,22 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useDispatch } from "react-redux";
-import { addCategory } from "../redux/listCategories";
+import { addList } from "../redux/list";
 
 export default function NewListDialog({ open, setOpen }) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [newListName, setNewListName] = useState("");
 
   const handleClose = () => {
     setOpen(false);
   };
-  const handleOnChangeListName = (event) => setNewListName(event.target.value)
+  const handleOnChangeListName = (event) => setNewListName(event.target.value);
 
   const handleAdd = () => {
-    dispatch(addCategory({name: newListName}))
-    setNewListName('')
-    handleClose()
-  }
+    dispatch(addList(newListName));
+    setNewListName("");
+    handleClose();
+  };
 
   return (
     <div>

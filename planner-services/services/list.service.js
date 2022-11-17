@@ -14,7 +14,7 @@ const getList = async (req, res) => {
   let { listId } = req.query;
   if (listId) {
     let result = await readList(listId);
-    res.send({  ...result });
+    res.send({ ...result });
   } else {
     res.send({ sucess: false });
   }
@@ -32,9 +32,9 @@ const postList = async (req, res) => {
 };
 
 const putList = async (req, res) => {
-  let { listId, user, name, items, createdAt, updatedAt } = req.body;
-  if (listId && user && name && createdAt) {
-    let listObject = { listId, user, name, items, createdAt, updatedAt };
+  let { listId, user, items } = req.body;
+  if (listId && user ) {
+    let listObject = { listId, user, items };
     let result = await updateList(listObject);
     res.send({ ...result });
   } else {

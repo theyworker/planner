@@ -8,19 +8,19 @@ import NewListDialog from "../subcomponents/NewListDialog";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { addAllCategories } from "../redux/listCategories";
+import { addAllLists } from "../redux/list";
 
 const Home = () => {
   const [openNewListDialog, setOpenNewListDialog] = useState(false);
   const dispatch = useDispatch()
   let navigate = useNavigate();
-  const listCategories = useSelector(
-    (state) => state.listCategories.categories || []
+  const listData = useSelector(
+    (state) => state.list.listData || []
   );
 
   useEffect(
     ()=>{
-      axios.get('http://localhost:3300/lists').then(res=>dispatch(addAllCategories(res.data.data)))
+      axios.get('http://localhost:3300/lists').then(res=>dispatch(addAllLists(res.data.data)))
     },[]
   )
 
@@ -36,7 +36,7 @@ const Home = () => {
         <Grid item xs={6} md={6}>
           <SubTitle text="Lists" />
           {/* <Item item={{ text: "Personal" }} /> */}
-          {listCategories.map((category, index) => (
+          {listData.map((category, index) => (
             <Item
               key={index}
               item={{ text: category.name }}

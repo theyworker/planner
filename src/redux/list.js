@@ -1,38 +1,59 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
+import { postReq, putReq } from "../api/api";
+import { LIST } from "../api/const";
 
-const listItem = (payload) => ({
-  text: payload.text,
-  list: payload.list,
-  active: true,
-  done: false,
-  uuid: uuidv4(),
+const createList = (newListName) => ({
+  listId: uuidv4(),
+  user: "Deshmon",
+  name: newListName,
+  items: [],
 });
+const createNewListItem = (listItemName) => ({
+  text: listItemName,
+  active: true,
+  itemId: uuidv4(),
+});
+const updateListArray = (listData = [], listId, newItem) => {
+  let tempState = listData;
+  let index = tempState.findIndex((list) => list.listId == listId);
+  tempState[index].items = [...tempState[index].items, newItem];
+  return {tempState , items :tempState[index].items };
+};
+
 export const listSlice = createSlice({
   name: "list",
   initialState: {
-    data: [],
+    listData: [],
   },
   reducers: {
-    setTodayData: (state, action) => {
-      state.data = action.payload;
+    addAllLists: (state, action) => {
+      state.listData = action.payload;
     },
-    addItem: (state, action) => {
-      state.data = [...state.data, listItem(action.payload)];
+    addList: (state, action) => {
+      let newListObject = createList(action.payload);
+      postReq(LIST, newListObject);
+      state.listData = [...state.listData, newListObject];
     },
-    toggleItemAsDone: (state, action) => {
-      let newState = state.data.map((item, index) => {
-        if (action.payload == item.uuid) {
-          return { ...item, done: !item.done };
-        }
-        return item;
+    updateList: (state, action) => {
+      let listItemObject = createNewListItem(action.payload.newItem);
+      let {tempState , items} = updateListArray(
+        state.listData,
+        action.payload.listId,
+        listItemObject
+      );
+      putReq(LIST, {
+        listId: action.payload.listId,
+        active: true,
+        user: "Devil",
+        items: items,
       });
-      state.data = newState;
+      state.listData = [...tempState];
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setTodayData, addItem, toggleItemAsDone } = listSlice.actions;
+export const { addAllLists, addList, updateList } = listSlice.actions;
 
 export default listSlice.reducer;
