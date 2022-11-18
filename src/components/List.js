@@ -53,9 +53,7 @@ const List = () => {
               handleItemClick={handleItemClick}
             ></Item>
           ))}
-      </Stack>
-      <Stack spacing={2}>
-        {listObject.items
+          {listObject.items
           .filter((item) => !item.active)
           .map((item, index) => (
             <Item
@@ -67,6 +65,7 @@ const List = () => {
             ></Item>
           ))}
       </Stack>
+      
       <Box sx={{ position: "fixed", bottom: "0px", width: "100%" }}>
         <Box SX={{ width: "80%" }}>
           <TextInput

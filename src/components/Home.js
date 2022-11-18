@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Grid, Paper } from "@mui/material";
+import { Box, Grid, } from "@mui/material";
 import Title from "../subcomponents/Title";
 import Item from "../subcomponents/Item";
 import SubTitle from "../subcomponents/SubTitle";
