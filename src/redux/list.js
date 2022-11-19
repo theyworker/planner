@@ -14,6 +14,7 @@ const createNewListItem = (listItemName) => ({
   text: listItemName,
   active: true,
   itemId: uuidv4(),
+  sortOrder: 0
 });
 const updateListArray = (listData = [], listId, newItem) => {
   let tempState = listData;

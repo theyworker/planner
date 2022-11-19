@@ -43,7 +43,7 @@ const List = () => {
       <Title text={list} />{" "}
       <Stack spacing={2}>
         {listObject.items
-          .filter((item) => item.active)
+          .filter((item) => item.active).sort((a,b)=> a.sortOrder-b.sortOrder)
           .map((item, index) => (
             <Item
             key={`${item.name}${index}`}

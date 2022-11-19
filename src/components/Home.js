@@ -35,7 +35,6 @@ const Home = () => {
       <Grid container spacing={2}>
         <Grid item xs={6} md={6}>
           <SubTitle text="Lists" />
-          {/* <Item item={{ text: "Personal" }} /> */}
           {listData.map((list, index) => (
             <Item
               key={index}
@@ -49,6 +48,9 @@ const Home = () => {
           />
         </Grid>
         <Grid item xs={6} md={6}>
+        {/* <SubTitle text="Today" />
+        <SubTitle text="November" />
+        <SubTitle text="2022" /> */}
           {/* <Paper>XXX</Paper> */}
         </Grid>
       </Grid>
